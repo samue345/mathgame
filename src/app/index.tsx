@@ -1,5 +1,5 @@
 import {View, Text, StyleSheet} from "react-native";
-import ListSections from "./sections/listSections";
+import ListSections from "./sections/ListSections";
 
 export default function Index(){
     return (
@@ -11,5 +11,4 @@ export default function Index(){
 
 const styles = StyleSheet.create({
     container: {flex: 1}
-
 })

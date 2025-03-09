@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
       padding: 8, 
       flexDirection: 'row', 
       justifyContent: 'space-between', 
-      backgroundColor: colors.redDark, 
+      backgroundColor: colors.white, 
       borderColor: colors.gray, 
       borderBottomWidth: 1
     },
-    navbarText: {padding: 6, color: colors.white, fontSize: 20},
+    navbarText: {padding: 6, color: colors.black, fontSize: 20},
     flexCenterContainer: {flexDirection: 'row', alignItems: 'center'}
 });
