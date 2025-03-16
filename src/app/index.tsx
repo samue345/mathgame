@@ -1,14 +1,5 @@
-import {View, Text, StyleSheet} from "react-native";
-import ListSections from "./sections/ListSections";
+import { Redirect } from 'expo-router';
 
-export default function Index(){
-    return (
-        <View style={styles.container}>
-            <ListSections/>
-        </View>    
-    )
+export default function Index() {
+  return  <Redirect href="/sections/list-sections" />;
 }
-
-const styles = StyleSheet.create({
-    container: {flex: 1}
-})

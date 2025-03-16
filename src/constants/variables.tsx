@@ -4,6 +4,6 @@ import DivImage from "../../assets/images/div.png";
 import MultiImage from "../../assets/images/multi.png"
 import LogicImage from "../../assets/images/logic.png";
 
-export const additionSubtractionImages = [addImage, subImage, addImage, subImage];
-export const divMultiImages = [DivImage, MultiImage, DivImage, MultiImage];
-export const LogicImages = [LogicImage];
+export const addSubImgs = [addImage, subImage, addImage, subImage];
+export const divMultiImgs = [DivImage, MultiImage, DivImage, MultiImage];
+export const LogicImgs = [LogicImage];
