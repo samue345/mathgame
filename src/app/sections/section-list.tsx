@@ -1,8 +1,10 @@
+import { ReactNode } from 'react';
 import {SectionList, StyleSheet, Text, View} from 'react-native';
 import SectionCard from './section-card';
 import { colors } from "@/constants/colors";
 import {addSubImgs, divMultiImgs, LogicImgs} from "@/constants/variables";
 import { RelativePathString } from 'expo-router';
+import { imageStyle } from '@/types/Image-style';
 
 const ROUTES = {
   ADD_SUB_LESSON: "../lessons/basic-operations/add-sub/add-sub-lesson",
@@ -10,18 +12,29 @@ const ROUTES = {
   LOGIC_LESSON: "/sections/logic/logic-lesson",
 };
 
+interface SectionItem {
+    key: string,
+    image?: number[],
+    imageStyle?: imageStyle,
+    route: RelativePathString,
+    component?: ReactNode
 
-const dataSections = [
+}
+
+interface SectionData{
+      title: string,
+      data: SectionItem[]
+}
+
+const sectionsData: SectionData[] = [
   {
     title: 'Soma e Subtração',
     data: [
       {
         key: '1',
-        component: <SectionCard 
-                    images={addSubImgs} 
-                    imageStyle={{width: 75, height: 75, tintColor: colors.white}} 
-                    routeComponent={ROUTES.ADD_SUB_LESSON as RelativePathString}
-                    />
+        image: addSubImgs,
+        imageStyle: {width: 75, height: 75, tintColor: colors.white},
+        route: ROUTES.ADD_SUB_LESSON as RelativePathString
       },
     ],
   },
@@ -30,11 +43,9 @@ const dataSections = [
     data: [
       {
         key: '2',
-        component: <SectionCard 
-                    images={divMultiImgs} 
-                    imageStyle={{width: 75, height: 75, tintColor: colors.white}} 
-                    routeComponent={ROUTES.MULTI_DIV_LESSON as RelativePathString}
-                    />,
+        image: divMultiImgs,
+        imageStyle: {width: 75, height: 75, tintColor: colors.white},
+        route: ROUTES.MULTI_DIV_LESSON as RelativePathString,
       },
     ],
   },
@@ -43,23 +54,33 @@ const dataSections = [
     data: [
       {
         key: '3',
-        component: <SectionCard 
-                    images={LogicImgs} 
-                    imageStyle={{width: 120, height: 120, tintColor: colors.white}} 
-                    routeComponent={ROUTES.LOGIC_LESSON as RelativePathString}
-                    />
+        image: LogicImgs,
+        imageStyle: {width: 120, height: 120, tintColor: colors.white},
+        route:  ROUTES.LOGIC_LESSON as RelativePathString
       },
     ],
-  }
+  },
 ];
 
 
 export default function ListSections() {
     return (
         <SectionList
-          sections={dataSections}
+          sections={sectionsData}
           keyExtractor={(item) => item.key}
-          renderItem={({item}) => <View style={styles.content}>{item.component}</View>}
+          renderItem={({item}) => 
+          <View style={styles.content}>
+            {
+              item.component
+              ??
+              <SectionCard
+                images={item.image || []}
+                imageStyle={item.imageStyle || {}}
+                routeComponent={item.route}
+              />
+            }
+          </View>
+          }
           renderSectionHeader={({section: {title}}) => (
             <View style={styles.header}> 
                 <Text style={styles.title}>{title}</Text>
