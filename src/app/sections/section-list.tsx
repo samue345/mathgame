@@ -14,11 +14,9 @@ const ROUTES = {
 
 interface SectionItem {
     key: string,
-    image?: number[],
-    imageStyle?: imageStyle,
+    image: number[],
+    imageStyle: imageStyle,
     route: RelativePathString,
-    component?: ReactNode
-
 }
 
 interface SectionData{
@@ -70,15 +68,11 @@ export default function ListSections() {
           keyExtractor={(item) => item.key}
           renderItem={({item}) => 
           <View style={styles.content}>
-            {
-              item.component
-              ??
               <SectionCard
-                images={item.image || []}
-                imageStyle={item.imageStyle || {}}
+                images={item.image}
+                imageStyle={item.imageStyle}
                 routeComponent={item.route}
               />
-            }
           </View>
           }
           renderSectionHeader={({section: {title}}) => (
