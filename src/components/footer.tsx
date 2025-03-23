@@ -2,11 +2,21 @@ import { View, TouchableOpacity, Text, StyleSheet } from "react-native"
 import { useState } from 'react';
 import { colors } from "@/constants/colors"
 import { Tabs } from "@/types/tabs";
+import { router } from "expo-router"
 
 export default function Footer({contentsLength, defaultTab, onTabChange }: Tabs){
     const [activeTab, setActiveTab] = useState(defaultTab);
     
-    const handleContinue = (index: number) => {
+    const handleContinue = () => {
+
+        const lastIndex = contentsLength - 1;
+
+        if(lastIndex ===  activeTab){
+          router.navigate('../add-sub/add-sub-exercises');
+        }
+
+        const index: number = activeTab + 1;
+
         setActiveTab(index);
         
         if(onTabChange){
@@ -29,7 +39,7 @@ export default function Footer({contentsLength, defaultTab, onTabChange }: Tabs)
                </View>
                <TouchableOpacity 
                 style={styles.buttonStyle} 
-                onPress={() =>handleContinue(Math.min(contentsLength - 1, activeTab + 1))}
+                onPress={() =>handleContinue()}
                >
                 <Text style={styles.text}>Continuar</Text>
                </TouchableOpacity>
