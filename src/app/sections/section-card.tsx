@@ -1,6 +1,6 @@
 import { colors } from "@/constants/colors";
 import {StyleSheet, View, Image, TouchableOpacity } from "react-native";
-import { imageStyle } from "@/app/sections/interfaces/Image-style";
+import { imageStyle } from "@/types/Image-style";
 import { router, RelativePathString } from "expo-router";
 
 export default function SectionCard({images, imageStyle, routeComponent}: {images: number[], imageStyle: imageStyle, routeComponent: RelativePathString })
@@ -17,8 +17,8 @@ export default function SectionCard({images, imageStyle, routeComponent}: {image
                     key={index}
                     style={[
                         { alignItems: 'center', justifyContent: 'center', width: size, height: size }, 
-                        (index % 2 === 0 && arrayLengthEven) && styles.borderRight,
-                        index < 2 && arrayLengthEven && styles.borderBottom
+                        (index % 2 === 0 && arrayLengthEven) ? styles.borderRight : null,
+                        (index < 2 && arrayLengthEven) ? styles.borderBottom : null
                     ]}
                     >
                         <Image

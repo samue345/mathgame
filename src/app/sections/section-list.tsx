@@ -5,7 +5,7 @@ import {addSubImgs, divMultiImgs, LogicImgs} from "@/constants/variables";
 import { RelativePathString } from 'expo-router';
 
 const ROUTES = {
-  ADD_SUB_LESSON: "../section-lessons/basic-operations/add-sub/add-sub-lesson",
+  ADD_SUB_LESSON: "../lessons/basic-operations/add-sub/add-sub-lesson",
   MULTI_DIV_LESSON: "/sections/basic-operations/multi-div/multi-div-lesson",
   LOGIC_LESSON: "/sections/logic/logic-lesson",
 };

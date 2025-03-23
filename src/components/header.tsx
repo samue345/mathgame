@@ -9,7 +9,7 @@ export default function Header(){
     return (
         <View style={styles.container}>
             <View style={styles.flexCenterContainer}>
-              <Heart/>
+              <Heart width={20}/>
               <Text style={styles.navbarText}>5</Text>
             </View>
             <View style={styles.flexCenterContainer}>
