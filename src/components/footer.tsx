@@ -4,15 +4,16 @@ import { colors } from "@/constants/colors"
 import { Tabs } from "@/types/tabs";
 import { router } from "expo-router"
 
-export default function Footer({contentsLength, defaultTab, onTabChange }: Tabs){
+export default function Footer({contentsLength, defaultTab, onTabChange, disable = false, textButton = 'Continuar'}: Tabs){
     const [activeTab, setActiveTab] = useState(defaultTab);
+    
     
     const handleContinue = () => {
 
         const lastIndex = contentsLength - 1;
 
         if(lastIndex ===  activeTab){
-          router.navigate('../add-sub/add-sub-exercises');
+          router.navigate('../add-sub/add-sub-exercise');
         }
 
         const index: number = activeTab + 1;
@@ -32,16 +33,16 @@ export default function Footer({contentsLength, defaultTab, onTabChange }: Tabs)
                         key={index}
                         style={[
                           styles.tabIndicator,
-                          index === activeTab ? styles.activeTabIndicator : null
+                          index === activeTab && styles.activeTabIndicator
                         ]}
                       />
                   ))}
                </View>
                <TouchableOpacity 
-                style={styles.buttonStyle} 
-                onPress={() =>handleContinue()}
+                style={[styles.buttonStyle, disable && styles.disable]} 
+                onPress={() => handleContinue()}
                >
-                <Text style={styles.text}>Continuar</Text>
+                <Text style={styles.text}>{textButton}</Text>
                </TouchableOpacity>
            </View>
     )
@@ -86,5 +87,7 @@ const styles = StyleSheet.create({
       activeTabIndicator: {
         backgroundColor: colors.redDark,
       },
+      disable: {backgroundColor: colors.gray}
+      
   });
   
